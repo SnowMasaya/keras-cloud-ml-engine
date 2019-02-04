@@ -10,7 +10,6 @@ from __future__ import print_function
 
 import argparse
 import pickle  # for handling the new data source
-import h5py  # for saving the model
 import keras
 from datetime import datetime  # for filename conventions
 from keras.models import Sequential
@@ -32,7 +31,7 @@ def train_model(train_file='data/mnist.pkl',
     print('Using logs_path located at {}'.format(logs_path))
 
     # Reading in the pickle file. Pickle works differently with Python 2 vs 3
-    f = file_io.FileIO(train_file, mode='r')
+    f = file_io.FileIO(train_file, mode='rb')
     if sys.version_info < (3,):
         data = pickle.load(f)
     else:
@@ -81,8 +80,8 @@ def train_model(train_file='data/mnist.pkl',
     model.save('model.h5')
 
     # Save the model to the Cloud Storage bucket's jobs directory
-    with file_io.FileIO('model.h5', mode='r') as input_f:
-        with file_io.FileIO(job_dir + '/model.h5', mode='w+') as output_f:
+    with file_io.FileIO('model.h5', mode='rb') as input_f:
+        with file_io.FileIO(job_dir + '/model.h5', mode='wb+') as output_f:
             output_f.write(input_f.read())
 
 
