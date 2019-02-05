@@ -87,6 +87,10 @@ def train_model(train_file='data/mnist.pkl',
 
 if __name__ == '__main__':
     # Parse the input arguments for common Cloud ML Engine options
+    print("Python version")
+    print(sys.version)
+    print("Version info.")
+    print(sys.version_info)
     parser = argparse.ArgumentParser()
     parser.add_argument(
       '--train-file',

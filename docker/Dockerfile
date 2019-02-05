@@ -60,7 +60,7 @@ RUN curl https://sdk.cloud.google.com | bash && \
 
 # ML Engine
 
-RUN git clone git://github.com/clintonreece/keras-cloud-ml-engine.git && \
+RUN git clone https://github.com/SnowMasaya/keras-cloud-ml-engine && \
     cd /src/keras-cloud-ml-engine && \
     mkdir data
 
